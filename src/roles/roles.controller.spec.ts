@@ -1,17 +1,27 @@
-import { User } from 'src/users/entities/user.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Test, TestingModule } from '@nestjs/testing';
+import { RolesController } from './roles.controller';
+import { RolesService } from './roles.service';
 
-@Entity()
-export class Role {
-  @PrimaryGeneratedColumn()
-  id: number;
+describe('RolesController', () => {
+    let controller: RolesController;
+    const mockRolesService = {
+        create: jest.fn(),
+        findAll: jest.fn(),
+        findOne: jest.fn(),
+        update: jest.fn(),
+        remove: jest.fn(),
+    };
 
-  @Column()
-  name: string;
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            controllers: [RolesController],
+            providers: [{ provide: RolesService, useValue: mockRolesService }],
+        }).compile();
 
-  @Column()
-  description: string;
+        controller = module.get<RolesController>(RolesController);
+    });
 
-  @OneToMany(() => User, (user) => user.role)
-  users: User[];
-}
+    it('should be defined', () => {
+        expect(controller).toBeDefined();
+    });
+});
