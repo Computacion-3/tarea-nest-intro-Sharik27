@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PermissionsModule } from './permissions/permissions.module';
 
 type SupportedDbTypes =
     | 'mysql'
@@ -34,6 +35,7 @@ type SupportedDbTypes =
                     configService.get<boolean>('DB_SYNCHRONIZE') ?? false,
             }),
         }),
+        PermissionsModule,
     ],
     controllers: [AppController],
     providers: [AppService],
