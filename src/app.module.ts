@@ -6,6 +6,7 @@ import { RolesModule } from './roles/roles.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PermissionsModule } from './permissions/permissions.module';
+import { GamesModule } from './games/games.module';
 
 type SupportedDbTypes =
     | 'mysql'
@@ -36,6 +37,7 @@ type SupportedDbTypes =
             }),
         }),
         PermissionsModule,
+        GamesModule,
     ],
     controllers: [AppController],
     providers: [AppService],
